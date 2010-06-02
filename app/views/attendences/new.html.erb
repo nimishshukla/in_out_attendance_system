@@ -1,0 +1,19 @@
+<h1>New attendence</h1>
+
+<% form_for(@attendence) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :timein %><br />
+    <%= f.datetime_select :timein %>
+  </p>
+  <p>
+    <%= f.label :timeout %><br />
+    <%= f.datetime_select :timeout %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', attendences_path %>

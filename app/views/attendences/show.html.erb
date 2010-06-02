@@ -1,0 +1,13 @@
+<p>
+  <b>Timein:</b>
+  <%=h @attendence.timein %>
+</p>
+
+<p>
+  <b>Timeout:</b>
+  <%=h @attendence.timeout %>
+</p>
+
+
+<%= link_to 'Edit', edit_attendence_path(@attendence) %> |
+<%= link_to 'Back', attendences_path %>

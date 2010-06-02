@@ -1,0 +1,132 @@
+<h1>Listing attendences of <%= @month_end.strftime("%B %Y") %></h1>
+<div><%= link_to "Previous", attendences_path(:id => @month_start.months_ago(1))%> | <%= link_to "Next", attendences_path(:id => @month_end+1)%></div>
+<div style="float:left;">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Timein</th>
+      <th>Timeout</th>
+      <th>Total hrs</th>
+    </tr>
+    <% total_working_hours = 0 %>
+    <% total_working_mins = 0 %>
+    <% actual_working_hours_should_be = 0 %>
+    <% @attendences.each do |attendence| %>
+      <tr>
+        <td style="background-color:red;">[<%=h attendence.today.to_s(:short) %>]</td>
+        <% if attendence.today < attendence.today.at_beginning_of_month+9%>
+          <td style="background-color:yellow;">[<%=h attendence.timein.to_s(:short).gsub(("0"+attendence.today.to_s(:short).lstrip), "") %>]</td>
+          <td style="background-color:grey;">[<%=h attendence.timeout.to_s(:short).gsub("0"+attendence.today.to_s(:short).lstrip, "") %>]</td>
+        <% else %>
+          <td style="background-color:yellow;">[<%=h attendence.timein.to_s(:short).gsub(attendence.today.to_s(:short), "") %>]</td>
+          <td style="background-color:grey;">[<%=h attendence.timeout.to_s(:short).gsub(attendence.today.to_s(:short), "") %>]</td>
+        <% end %>
+        <% ttl_time = (attendence.timeout - attendence.timein)/3600 %>
+        <td style="background-color:red;">[<%=h "#{ttl_time.to_i}:#{'0' if ((ttl_time - ttl_time.to_i)*60).to_i < 10}#{((ttl_time - ttl_time.to_i)*60).to_i}" %>]</td>
+        <% total_working_hours += ttl_time.to_i %>
+        <% total_working_mins += ((ttl_time - ttl_time.to_i)*60).to_i %>
+        <% actual_working_hours_should_be += 9 %>
+        <td><%= link_to 'Show', attendence %></td>
+        <td><%= link_to 'Edit', edit_attendence_path(attendence) %></td>
+        <td><%= link_to 'Destroy', attendence, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    <% total_working_hours += (total_working_mins/60).to_i %>
+    <% total_working_mins = total_working_mins%60 %>
+    <tr style="background-color:green;"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td>
+      <td style="background-color:yellow;">Total =</td><td style="background-color:yellow;"><%= total_working_hours %>:<%= "#{'0' if total_working_mins < 10}" -%><%= total_working_mins  %></td>
+      <td style="background-color:yellow;"><%= actual_working_hours_should_be %></td>
+      <% if (total_working_hours - actual_working_hours_should_be) >=0 %>
+        <% color = "green" %>
+      <% else %>
+        <% color = "red" %>
+      <% end %>
+      <td style="background-color:<%=color%>;"><%= total_working_hours - actual_working_hours_should_be %></td>
+      <td style="background-color:<%=color%>;">(in hrs.)</td>
+    </tr>
+  </table>
+
+  <br />
+
+  <%= link_to 'New attendence', new_attendence_path %>
+</div>
+
+<div align="center" style="float:none;">
+  <h1>New task</h1>
+
+  <% form_for(@task) do |f| %>
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :size => "45" %>
+    </p>
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :size => "50X50" %>
+    </p>
+    <p>
+      <%= f.label :estimated_time -%>
+      <%= f.text_field :estimated_time, :size => "5" -%>
+      <%= f.label :priority -%>
+      <%= f.select :priority, Task::PRIORITY, :size => "15" -%>
+    </p>
+    <p>
+      <%= f.submit 'Create' %>
+    </p>
+  <% end %>
+
+  <%= link_to 'Back', tasks_path %>
+</div>
+<br clear="all"/>
+<div>
+  <table>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <%= image_tag "black.jpg", :width => 2, :height => 200 %>
+              <% @attendences.each do |attendence| %>
+                <% value = (((attendence.timeout - attendence.timein)/60)/540)*200 %>
+                <%= image_tag "images.jpeg", :width => 20, :height => "#{value}" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<center>
+  <div align="center" style="width:900px;background-color:gray;">
+    <% statuses = Status.find(:all, :conditions => {:active => true}, :order => "position") %>
+    <% unless statuses.empty? %>
+      <% statuses.each do |s| %>
+        <div id="<%= s.name %>" class = "<%= s.name %>" align="center" style="height:500px;float:left;border:solid 2px #FF0000;width:140px;background-color:white;">
+          <h4><%= s.name %></h4>
+          <% tasks = Task.find(:all, :conditions => {:status_id => s.id}) %>
+          <% unless tasks.empty? %>
+            <% tasks.each do |t| %>
+          <% ticket_id = "ticket_#{t.id}" %>
+          <center id="<%= ticket_id %>">
+                <div style="background-color:green;height:120px;width:120px;border:solid 2px #00FF00;font-size:11px;">
+                  <b><%= truncate(t.title, 30) %></b>
+                  <%= truncate(t.description, 90) %>
+                </div>
+              </center>
+          <%= draggable_element(ticket_id, :revert=>true) %>
+              <br/>
+            <% end %>
+          <% else %>
+            <%#= "Empty..." %>
+          <% end %>
+        </div>
+    <%= drop_receiving_element(s.name, :accept => s.name,
+      :with => "q",
+      :url => {:action=>:index})%>
+      <% end %>
+    <% end %>
+  </div>
+</center>

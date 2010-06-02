@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Attendences: <%= controller.action_name %></title>
+    <%= stylesheet_link_tag 'home_page' %>
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body class="body">
+
+    <div id="c-header">
+      <h5 id="c-logo"><a href="http://google.com">Google</a></h5>
+
+      <ul id="c-section-nav">
+        <li><a id="c-header-link-how" href="http://c.com/how">How it Works</a></li>
+        <li><a id="c-header-link-pricing" href="http://c.com/pricing">Pricing</a></li>
+        <li><a id="c-header-link-addons" href="http://addons.c.com/">Add-ons</a></li>
+        <li><a id="c-header-link-docs" href="http://docs.c.com/">Docs</a></li>
+        <li><a id="c-header-link-support" href="http://support.c.com/">Support</a></li>
+      </ul>
+    </div>
+
+    <div id="wrapper">
+      <div id="main">
+        <div style="position: absolute; z-index: 1000; display: none;" id="dummy"> </div>
+        <ul class="accordion">
+          <li id="create-slide">
+            <span class="opener">Create: instant deployment</span>
+            <div style="display: none;" class="slide">
+              <div class="content">
+                <h2>Create c apps instantly:</h2>
+                <span id="code-create">
+                  $ sudo gem install c
+                  $ c create sushi
+                  Created http://sushi.c.com/
+                  git@c.com:sushi.git
+                </span>
+              </div>
+            </div>
+          </li>
+          <li id="deploy-slide">
+            <span class="opener">Deploy: pure git workflow</span>
+            <div style="display: none;" class="slide">
+              <div class="content">
+                <h2>Full deployment is simply a git push:</h2>
+                <span id="code-deploy">
+                  $ git push c master
+                  -----> c receiving push
+                  -----> Rails app detected
+                  -----> Launching..... done
+                  http://sushi.c.com deployed
+                </span>
+              </div>
+            </div>
+          </li>
+          <li id="work-slide">
+            <span class="opener active">Work: complete API</span>
+            <div class="slide slide-bottom" style="display: block;">
+              <div class="content">
+                <h2>Everything apps need and more, all manageable by API:</h2>
+                <span id="code-work">
+                  $ c sharing:add fugu@sushi.com
+                  $ c domains:add sushi.com
+                  $ c rake db:migrate
+                  $ c db:push
+                  $ c addons:add memcache
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="rightpane">
+          <h2 class="tagline">rock-solid ruby platform</h2>
+          <span class="subtag">
+            Fast, frictionless, and maintenance free.<br/>
+            Deploy and scale with confidence.
+          </span>
+          <div class="apps">
+
+            <img src="/images/v3/6.png" class="number-6"/><img src="/images/v3/3.png" class="number-3"/><img src="/images/v3/comma.png" class="number-comma"/><img src="/images/v3/2.png" class="number-2"/><img src="/images/v3/6.png" class="number-6"/><img src="/images/v3/0.png" class="number-0"/>
+          </div>
+          <span class="apps-now">apps running right now now</span>
+          <span class="presign">It's free to get started and sign up is instant. Deploy your first app within minutes.</span>
+          <a class="signup" href="http://api.c.com/signup">sign up</a>
+        </div>
+      </div>
+      <div id="widgets">
+        <!-- <a class="widget" id="newrelic" href="http://addons.c.com/newrelic">
+					<style type="text/css">a.widget#newrelic:hover .content {color:#53c8db} </style>
+					<span class="logo" style="background-image: url(/images/widgets/newrelic.png);"></span>
+					<span class="title">Performance Management</span>
+					<span class="content">Seamlessly integrated into your app in one-click. Use RPM Bronze for free on c.</span>
+				</a> -->
+
+        <a href="http://addons.c.com" id="addons" class="widget">
+          <style type="text/css">a.widget#addons:hover .content {color:#77d977} </style>
+          <span style="background-image: url(/images/widgets/addons.png);" class="logo"/>
+          <span class="title">build powerful apps easily</span>
+          <span class="content">Extend c, add features, and connect services instantly. Everything in one place.</span>
+        </a>
+
+        <a href="http://news.c.com/news_releases/c-named-a-cool-vendor-by-leading-analyst-firm" id="gartner" class="widget">
+          <style type="text/css">a.widget#gartner:hover .content {color:#6DA0D3} </style>
+          <span style="background-image: url(/images/widgets/gartner.png);" class="logo"/>
+          <span class="title">c recognized</span>
+          <span class="content">Gartner names c as a Cool Vendor in Cloud Computing.</span>
+        </a>
+
+        <a href="http://success.c.com/shopify" id="widget-3" class="widget"><style type="text/css">a.widget#widget-3:hover .content {color:#a3d977}</style><span style="background-image: url(/images/widgets/shopify.png);" class="logo"/><span class="title">powered by c </span><span class="content">Shopify.com depends on continuous, reliable, secure service with no headaches.</span></a>
+        <a href="http://success.c.com/bestbuy" id="widget-4" class="widget"><style type="text/css">a.widget#widget-4:hover .content {color:#D9CE46}</style><span style="background-image: url(/images/widgets/bestbuy.png);" class="logo"/><span class="title">customer focus</span><span class="content">Best Buy uses c to stay connected with their customers and generate Ideas.</span></a>
+      </div>
+    </div>
+
+    <div id="widgets">
+      <!-- <a class="widget" id="newrelic" href="http://addons.c.com/newrelic">
+					<style type="text/css">a.widget#newrelic:hover .content {color:#53c8db} </style>
+					<span class="logo" style="background-image: url(/images/widgets/newrelic.png);"></span>
+					<span class="title">Performance Management</span>
+					<span class="content">Seamlessly integrated into your app in one-click. Use RPM Bronze for free on c.</span>
+				</a> -->
+
+      <a href="http://addons.c.com" id="addons" class="widget">
+        <style type="text/css">a.widget#addons:hover .content {color:#77d977} </style>
+        <span style="background-image: url(/images/widgets/addons.png);" class="logo"/>
+        <span class="title">build powerful apps easily</span>
+        <span class="content">Extend c, add features, and connect services instantly. Everything in one place.</span>
+      </a>
+
+      <a href="http://news.c.com/news_releases/c-named-a-cool-vendor-by-leading-analyst-firm" id="gartner" class="widget">
+        <style type="text/css">a.widget#gartner:hover .content {color:#6DA0D3} </style>
+        <span style="background-image: url(/images/widgets/gartner.png);" class="logo"/>
+        <span class="title">c recognized</span>
+        <span class="content">Gartner names c as a Cool Vendor in Cloud Computing.</span>
+      </a>
+
+      <a href="http://success.c.com/bestbuy" id="widget-3" class="widget"><style type="text/css">a.widget#widget-3:hover .content {color:#D9CE46}</style><span style="background-image: url(/images/widgets/bestbuy.png);" class="logo"/><span class="title">customer focus</span><span class="content">Best Buy uses c to stay connected with their customers and generate Ideas.</span></a>
+      <a href="http://success.c.com/flightcaster" id="widget-4" class="widget"><style type="text/css">a.widget#widget-4:hover .content {color:#d98977}</style><span style="background-image: url(/images/widgets/flightcaster.png);" class="logo"/><span class="title">launched in record time </span><span class="content">Complex flight prediction app saves time with c, focuses on users instead.</span></a>
+    </div>
+    <div id="c-footer">
+      <div class="container">
+        <h2 class="hidden">Sitemap</h2>
+        <!-- / c -->
+        <div id="c-footer-company" class="nav sixth">
+          <h3>c</h3>
+          <ul>
+            <li>
+              <a id="c-footer-link-about" href="http://about.c.com/">About</a>
+            </li>
+            <li>
+              <a id="c-footer-link-contact" href="http://c.com/contact">Contact</a>
+            </li>
+            <li>
+              <a id="c-footer-link-jobs" href="http://jobs.c.com/">Jobs</a>
+            </li>
+            <li>
+              <a id="c-footer-link-legal" href="http://legal.c.com/">Legal</a>
+            </li>
+          </ul>
+        </div>
+        <!-- / BUSINESS -->
+        <div id="c-footer-business" class="nav sixth">
+          <h3>Business</h3>
+          <ul>
+            <li>
+              <a id="c-footer-link-business" href="http://business.c.com/">Why c</a>
+            </li>
+            <li>
+              <a id="c-footer-link-success" href="http://success.c.com/">Success Stories</a>
+            </li>
+            <li>
+              <a id="c-footer-link-news" href="http://news.c.com/">News & Events</a>
+            </li>
+            <li>
+              <a id="c-footer-link-blog" href="http://blog.c.com/">Blog</a>
+            </li>
+          </ul>
+        </div>
+        <!-- / PLATFORM -->
+        <div id="c-footer-platform" class="nav sixth">
+          <h3>Platform</h3>
+          <ul>
+            <li>
+              <a id="c-footer-link-how" href="http://c.com/how">How it Works</a>
+            </li>
+            <li>
+              <a id="c-footer-link-pricing" href="http://c.com/pricing">Pricing</a>
+            </li>
+            <li>
+              <a id="c-footer-link-addons" href="http://addons.c.com/">Add-ons</a>
+            </li>
+          </ul>
+        </div>
+        <!-- / RESOURCES -->
+        <div id="c-footer-resources" class="nav sixth">
+          <h3>Resources</h3>
+          <ul>
+            <li>
+              <a id="c-footer-link-docs" href="http://docs.c.com/">Documentation</a>
+            </li>
+            <li>
+              <a id="c-footer-link-support" href="http://support.c.com/">Support</a>
+            </li>
+            <li>
+              <a id="c-footer-link-status" href="http://status.c.com/">Status</a>
+            </li>
+          </ul>
+        </div>
+        <div id="c-footer-pull" class="third"><h3><a href="http://news.c.com">Recent News</a></h3><dl><dt><a href="http://gigaom.com/2010/05/16/are-the-stars-aligning-for-an-amazon-paas-offering/" class="title">GigaOm: Are the Stars Aligning for an Amazon PaaS Offering?</a></dt><dd>May 17 - <a href="http://gigaom.com/2010/05/16/are-the-stars-aligning-for-an-amazon-paas-offering/" class="host">gigaom.com</a></dd><dt><a href="http://www.informationweek.com/cloud-computing/blog/archives/2010/05/software_develo_1.html" class="title">InformationWeek: Software Development Is Headed For The Cloud  </a></dt><dd>May 13 - <a href="http://www.informationweek.com/cloud-computing/blog/archives/2010/05/software_develo_1.html" class="host">www.informationweek.com</a></dd></dl></div>
+      </div>
+    </div>
+  </body>
+</html>
